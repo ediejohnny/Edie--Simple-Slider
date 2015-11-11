@@ -1,5 +1,6 @@
 # Edie' Simple Slider
 A very simple slider made with jQuery with a single effect of fadeIn() and fadeOut().
+*For study purposes.*
 
 # How to use
 Import the ess.js from the 'javascripts' folder to your HTML file after the jQuery plugin and you're done.
