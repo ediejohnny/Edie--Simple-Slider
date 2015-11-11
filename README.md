@@ -17,4 +17,5 @@ Import the ess.js from the 'javascripts' folder to your HTML file after the jQue
 
 # Options
 ``` data-cooldown ``` means the seconds to load the next images.
+
 ``` data-height ``` means the height of the container, if it doesn't exists or if it's ```0```, the code will attemp to use the parent's height.
