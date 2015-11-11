@@ -8,9 +8,9 @@ Import the ess.js from the 'javascripts' folder to your HTML file after the jQue
 ```
 <div class="edie-slides" data-cooldown="8" data-height="0">
 	<div class="edie-slides-container">
-		<div class="edie-slide-01 edie-slide" data-src="images/slide/slide-01.jpg"></div>
-		<div class="edie-slide-02 edie-slide" data-src="images/slide/slide-02.jpg"></div>
-		<div class="edie-slide-03 edie-slide" data-src="images/slide/slide-03.jpg"></di>v
+		<div class="edie-slide" data-src="images/slide/slide-01.jpg"></div>
+		<div class="edie-slide" data-src="images/slide/slide-02.jpg"></div>
+		<div class="edie-slide" data-src="images/slide/slide-03.jpg"></di>v
 	</div>
 </div>
 ```
