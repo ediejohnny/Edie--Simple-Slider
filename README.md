@@ -10,7 +10,7 @@ Import the ess.js from the 'javascripts' folder to your HTML file after the jQue
 	<div class="edie-slides-container">
 		<div class="edie-slide" data-src="images/slide/slide-01.jpg"></div>
 		<div class="edie-slide" data-src="images/slide/slide-02.jpg"></div>
-		<div class="edie-slide" data-src="images/slide/slide-03.jpg"></di>v
+		<div class="edie-slide" data-src="images/slide/slide-03.jpg"></div>
 	</div>
 </div>
 ```
