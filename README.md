@@ -27,6 +27,6 @@ Import the ess.js from the 'javascripts' folder to your HTML file after the jQue
 
 ``` data-position ``` is the same of the ``` background-position ``` CSS property. It accepts the same values.
 
-``` data-init-auto ``` is a boolean that indicates if the slide will start automatically or not. If set to ```false``` you have to initialize it by yourself calling the ```initEdieSlider(0)``` function.
+``` data-init-auto ``` is a boolean that indicates if the slide will start automatically or not. If set to ```false``` you have to initialize it by yourself calling the ```initEdieSlider()``` function.
 
 You can also set the ``` data-cooldown ``` for each of the slides to customize the cooldown time of each one separately.
