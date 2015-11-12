@@ -1,47 +1,81 @@
 /* Author: Edie Johnny (edie.eu@gmail.com) */
 
 /* Edie Simple Slider */
-var cooldown     = $(".edie-slides").data("cooldown");
-var width        = $(".edie-slides").data("width") || 0;
-var height       = $(".edie-slides").data("height") || 0;
-var position     = $(".edie-slides").data("position") || "100%";
-var currentIndex = 0;
-var nextIndex    = 0;
-var slides       = [];
+
+// Set jQuery container
+var edieSlides   = $(".edie-slides");
+
+// Options and their default values
+var cooldown     = edieSlides.data("cooldown")  || 5000;
+var width        = edieSlides.data("width")     || "100%";
+var height       = edieSlides.data("height")    || "200px";
+var position     = edieSlides.data("position")  || "top center";
+var size         = edieSlides.data("size")      || "100%";
+var initAuto     = edieSlides.data("init-auto") || true;
+
+// Necessary variables
+var parentHeight       = edieSlides.parent().height();
+var viewPortHeight     = $(window).height();
+var currentIndex       = 0;
+var nextIndex          = 0;
+var individualCooldown = 0;
+var disable            = 0;
+var slides             = [];
+
+// Make sure the slide will appear if parent container haven't a height setted
+// even if we have to force the height according to the option 'height'
+
+// If the user setted a height in percentage and the parent container
+// doesn't have a height setted, we have to set it according to the size
+// of the viewport
+
+// But if the parent container has a height setted and the user choose the
+// height in percentage, we apply our height based on that percentage
+// according to the parent height; for example, if the parent container
+// have a height of 600px and the user setted 50% on the height, the slide
+// will have 300px of height
+if(typeof height == "string") {
+	if(parentHeight == 0) {
+		$(".edie-slides").parent().height((parseInt(height) / 100) * viewPortHeight);
+		parentHeight = $(".edie-slides").parent().height();
+		height = parentHeight + "px";
+	} else {
+		height = (parseInt(height) / 100) * parentHeight + "px";
+	}
+}
+
+// Set the options for each 'edie-slide' inside the container
 $(".edie-slides-container .edie-slide").each(function(index){
 	$(this).css({
 		"background"          : "url('" + $(this).data("src") + "') no-repeat",
-		"background-position" : "top center",
-		"background-size"     : position,
-		"width"               : "100%",
-		"padding-top"         : (height > 0 ? height + "px" : $(".edie-slides").parent().innerHeight() + "px"),
+		"background-position" : position,
+		"background-size"     : size,
+		"width"               : width,
+		"padding-top"         : (typeof height == "number" && height > 0 ? height + "px" : height),
 		"display"             : "none"
 	});
 	slides[index] = $(this);
 });
 
-var initEdieSlider = function(nextIndex) {
-	if(typeof nextIndex === "undefined") {
-		var nextIndex = 0;
-	}
-	if(nextIndex >= slides.length) {
-		nextIndex = 0;
-	}
-	if(slides.length > 0) {
-		var current = setTimeout(function(){
-			$(".edie-slides-container .edie-slide").each(function(index){
-				if($(this).css("display") != "none") {
-					currentIndex = index;
-				}
-			});
-			slides[currentIndex].fadeOut(500, "swing", function(){
-				slides[currentIndex].css("display", "none");
-				slides[nextIndex].hide().fadeIn();
-			});
-			initEdieSlider(nextIndex + 1);
-		}, cooldown * 1000);
-	}
+// Disable plugin if inside the container has only one 'edie-slide'
+// because there's no purpose on keeping fadein and fadeout the same image
+var countSlides = slides.length;
+if(countSlides == 1) {
+	disable = 1;
 }
 
-slides[0].fadeIn();
-var current = initEdieSlider(1);
+var initEdieSlider = function(slide) {
+	var i = (slide >= countSlides ? 0 : slide) || 0;
+	var s = slides[i] || slides[0];
+	s.fadeIn();
+	var c = slides[i].data("cooldown") || cooldown;
+	var init = disable || setTimeout(function(){
+		slides[i].fadeOut(500, "swing", function(){
+			initEdieSlider(i + 1);
+		});
+	}, c);
+}
+
+if(initAuto) {
+	initEdieSlider();
+}
