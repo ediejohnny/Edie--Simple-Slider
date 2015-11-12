@@ -29,4 +29,4 @@ Import the ess.js from the 'javascripts' folder to your HTML file after the jQue
 
 ``` data-init-auto ``` is a boolean that indicates if the slide will start automatically or not. If set to ```false``` you have to initialize it by yourself calling the ```initEdieSlider()``` function.
 
-You can also set the ``` data-cooldown ``` for each of the slides to customize the cooldown time of each one separately.
+You can also set the ``` data-cooldown ``` for each slide to customize the cooldown time of each one separately. You also need to set the ``` data-src ``` for each one with the URL of the image you want.
