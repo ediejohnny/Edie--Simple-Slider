@@ -9,8 +9,8 @@ var edieSlides   = $(".edie-slides");
 var cooldown     = edieSlides.data("cooldown")  || 5000;
 var width        = edieSlides.data("width")     || "100%";
 var height       = edieSlides.data("height")    || "200px";
-var position     = edieSlides.data("position")  || "top center";
-var size         = edieSlides.data("size")      || "100%";
+var position     = edieSlides.data("position")  || "top";
+var size         = edieSlides.data("size")      || "cover";
 var initAuto     = edieSlides.data("init-auto") || true;
 
 // Necessary variables
@@ -47,12 +47,15 @@ if(typeof height == "string") {
 // Set the options for each 'edie-slide' inside the container
 $(".edie-slides-container .edie-slide").each(function(index){
 	$(this).css({
-		"background"          : "url('" + $(this).data("src") + "') no-repeat",
-		"background-position" : position,
-		"background-size"     : size,
-		"width"               : width,
-		"padding-top"         : (typeof height == "number" && height > 0 ? height + "px" : height),
-		"display"             : "none"
+		"background"              : "url('" + $(this).data("src") + "') no-repeat fixed",
+		"background-position"     : position,
+		"-webkit-background-size" : position,
+		"-moz-background-size"    : position,
+		"-o-background-size"      : position,
+		"background-size"         : size,
+		"width"                   : width,
+		"height"                  : $(this).width() / 2 + "px",
+		"display"                 : "none"
 	});
 	slides[index] = $(this);
 });
